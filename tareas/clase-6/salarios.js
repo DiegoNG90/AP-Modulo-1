@@ -55,9 +55,9 @@ $nodoSiguiente.onclick = function crearMiembrosFamiliares(e){
         datoMiembro.placeholder = "Ingrese el sueldo en valor numérico";
         datoMiembro.type = "number"; 
         datoMiembro.className = "sueldos";
+        document.querySelector('form').appendChild(saltoDeLinea);
         document.querySelector('form').appendChild(miembroEtiqueta);
         document.querySelector('form').appendChild(datoMiembro);
-        document.querySelector('form').appendChild(saltoDeLinea);
     }
 };
 const $botonCalcular = document.createElement('button');
@@ -67,6 +67,15 @@ const $botonResetear = document.createElement('button');
 $botonResetear.innerText = "Reestablecer";
 document.querySelector('div').appendChild($botonResetear);
 const $nodoParrafo = document.querySelector('p');
+
+function conversorNodeListToArray($nodeList){
+    const arrayConvertida = [];
+    for (let i = 0; i < $nodeList.length; i++) {
+        arrayConvertida.push( Number($nodeList.item(i).value));
+    }
+    return arrayConvertida;
+}
+
 $botonCalcular.onclick = function(e){
     e.preventDefault()
     const $listaSueldos = document.querySelectorAll('.sueldos');        
@@ -83,4 +92,9 @@ $botonResetear.onclick = function (e){
         $listaSueldos.item(i).remove();
         document.querySelector('.etiqueta-ingreso').remove();
     }
+    let element = document.querySelectorAll('br');
+    Array.prototype.forEach.call(element, function(br) { 
+        document.querySelector('div').parentNode.removeChild(br);
+    });
+
 };
