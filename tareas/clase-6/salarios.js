@@ -26,10 +26,14 @@ function calcularMenor(lista){
 };
 function calcularPromedio(lista){
     let sumaEdades = 0;
+    let divisor = lista.length;
     for (let i = 0; i < lista.length; i++) {
         sumaEdades += Number(lista[i]);
+        if(lista[i] === 0){
+            divisor--;
+        }
     }
-    return  sumaEdades/(lista.length)
+    return  sumaEdades/(divisor)
 };
 
 const $nodoEtiqueta = document.createElement('label');
