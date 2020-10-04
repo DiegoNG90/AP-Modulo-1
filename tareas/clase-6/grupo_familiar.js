@@ -67,5 +67,6 @@ $botonBorrar.onclick = function(e){
     e.preventDefault(e)
     for (let i = 0; i < $listaInputs.length; i++) {
         $listaInputs.item(i).value = "";     
-    }
+    } 
+    resultado.innerText = "";
 };
