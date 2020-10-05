@@ -6,7 +6,6 @@ $nodoBoton = document.querySelector('#ingresar');
 $nodoResultado = document.querySelector('#resultado');
 
 function validarNombre(nombre){
-    nombre = $nodoNombre.value;
     if (nombre === "") {
         return "El nombre debe contener al menos 1 caracter"        
     }else if (nombre.length >= 50) {
@@ -16,7 +15,6 @@ function validarNombre(nombre){
     }
 }
 function validarEdad(edad){
-    edad = $nodoEdad.value;
     if (edad > 110 || edad < 0) {
         return "La edad está fuera de rango; edades validables de 1 a 110 años";
     }
@@ -28,6 +26,8 @@ function validarEdad(edad){
 
 $nodoBoton.onclick = function (e){
     e.preventDefault();
+    edad = $nodoEdad.value;
+    nombre = $nodoNombre.value;
     validarNombre(nombre);
     validarEdad(edad);
     console.log(validarNombre(nombre));
@@ -54,13 +54,13 @@ $nodoBoton.onclick = function (e){
         if ((validarNombre(nombre) === '') && (validarEdad(edad) === '')) {
             $nodoNombre.className = "";
             $nodoEdad.className = "";
-            $nodoResultado.innerText = `Tienes ${$nodoEdad.value}, eres mayor de edad. Bienvenido/a al bar, ${$nodoNombre.value}!`;
+            $nodoResultado.innerText = `Tienes ${edad}, eres mayor de edad. Bienvenido/a al bar, ${nombre}!`;
             $nodoResultado.style.color = "green";
             $nodoResultado.style.fontSize = "2rem";
         }else if((validarNombre(nombre) === '') && (validarEdad(edad) !== '')){
             $nodoNombre.className = "";
             $nodoEdad.className = "";
-            $nodoResultado.innerText = `Tenes ${$nodoEdad.value}, sos menor de edad. No podés entrar.`;
+            $nodoResultado.innerText = `Tenes ${edad}, sos menor de edad. No podés entrar.`;
             $nodoResultado.style.color = "red";
             $nodoResultado.style.fontSize = "2rem"; 
         }
