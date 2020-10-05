@@ -1,38 +1,68 @@
 console.log("Bar linkeado");
 
-$nodoNombre = document.querySelector('#nombre-usuario');
-$nodoEdad = document.querySelector('#edad-usuario');
+$nodoNombre = document.querySelector('#nombre');
+$nodoEdad = document.querySelector('#edad');
 $nodoBoton = document.querySelector('#ingresar');
 $nodoResultado = document.querySelector('#resultado');
 
+function validarNombre(nombre){
+    nombre = $nodoNombre.value;
+    if (nombre === "") {
+        return "El nombre debe contener al menos 1 caracter"        
+    }else if (nombre.length >= 50) {
+        return "El nombre no debe contener más de 50 caracteres"
+    }else{
+        return ''
+    }
+}
+function validarEdad(edad){
+    edad = $nodoEdad.value;
+    if (edad > 110 || edad < 0) {
+        return "La edad está fuera de rango; edades validables de 1 a 110 años";
+    }
+    else if (edad<18){
+        return "Eres menor de edad, no puedes ingresar al bar";
+    }
+    return '';
+}
+
 $nodoBoton.onclick = function (e){
     e.preventDefault();
-    if (!$nodoNombre.value && !$nodoEdad.value) {
-        $nodoResultado.innerText = "Campo nombre y edad incompletos! Por favor, completelos"
+    validarNombre(nombre);
+    validarEdad(edad);
+    console.log(validarNombre(nombre));
+    console.log(validarEdad(edad));
+    if ((validarNombre(nombre) !== '') && (validarEdad(edad) !== '')) {
+        $nodoResultado.innerText = validarNombre(nombre) +". "+ validarEdad(edad);
         $nodoNombre.className = "error";
         $nodoEdad.className = "error";
-    } else if (!$nodoNombre.value) {
+        $nodoResultado.style.color = "red";
+        $nodoResultado.style.fontSize = "2rem";
+    }else if (validarNombre(nombre) !== '') {
         $nodoNombre.className = "error";
         $nodoEdad.className = "";
-        $nodoResultado.innerText = "Campo nombre vacio! Por favor, ponga su nombre."
-    } else if (!$nodoEdad.value) {
+        $nodoResultado.innerText = validarNombre(nombre);
+        $nodoResultado.style.color = "red";
+        $nodoResultado.style.fontSize = "2rem";
+    }else if (validarEdad(edad) !== '') {
         $nodoEdad.className = "error";
         $nodoNombre.className = "";
-        $nodoResultado.innerText = "Campo edad incompleto! Por favor, ingrese su edad."
+        $nodoResultado.innerText = validarEdad(edad);
+        $nodoResultado.style.color = "red";
+        $nodoResultado.style.fontSize = "2rem";
     } else {
-        if ($nodoNombre.value && ($nodoEdad.value > 17)) {
+        if ((validarNombre(nombre) === '') && (validarEdad(edad) === '')) {
             $nodoNombre.className = "";
             $nodoEdad.className = "";
             $nodoResultado.innerText = `Tienes ${$nodoEdad.value}, eres mayor de edad. Bienvenido/a al bar, ${$nodoNombre.value}!`;
             $nodoResultado.style.color = "green";
             $nodoResultado.style.fontSize = "2rem";
-        }else if($nodoNombre && ($nodoEdad.value < 18)){
+        }else if((validarNombre(nombre) === '') && (validarEdad(edad) !== '')){
             $nodoNombre.className = "";
             $nodoEdad.className = "";
             $nodoResultado.innerText = `Tenes ${$nodoEdad.value}, sos menor de edad. No podés entrar.`;
             $nodoResultado.style.color = "red";
-            $nodoResultado.style.fontSize = "2rem";
-            
+            $nodoResultado.style.fontSize = "2rem"; 
         }
     }
 }
