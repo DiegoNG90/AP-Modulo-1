@@ -14,10 +14,17 @@ let cantidadHoras = 0;
 nodoSumar.onclick = function(e){
     e.preventDefault()
     let segundos = Number(document.getElementById('segundos').value);
-    cantidadSegundos += segundos;
     let minutos = Number(document.getElementById('minutos').value);
-    cantidadMinutos += minutos;
     let horas = Number(document.getElementById('horas').value);    
+
+    while(segundos < 0 || minutos < 0 || horas < 0){
+        alert("Lo siento, el programa no puede cargar valores negativos. Asegurese de cargar valores positivos");
+        segundos = 0;
+        minutos = 0;
+        horas = 0;
+    }
+    cantidadSegundos += segundos;
+    cantidadMinutos += minutos;
     cantidadHoras += horas;
     alert(`Video cargado. Duracion: ${horas} horas ${minutos}' ${segundos}"`);
 }   
@@ -27,6 +34,8 @@ function tiempoTotalEnSegundos(segundos, minutos, horas){
 let nodoCalcular = document.getElementById('Calcular');
 nodoCalcular.onclick = function(e){
     e.preventDefault();
+
+
     const segundosTotales = tiempoTotalEnSegundos(cantidadSegundos,cantidadMinutos,cantidadHoras);
     let horas = Math.floor(segundosTotales / 3600 );
     let minutos = Math.floor((segundosTotales%3600) / 60);
