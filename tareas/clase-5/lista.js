@@ -67,6 +67,18 @@ function cantidadDeRepeticionesEnUnaArrayPorElemento (array){
         }
     }return objetoNum;
 }
+
+function valorMasGrandeDeLasPropiedadesDeUnObjetoConNumeros (objeto){
+    let valorMasGrande = Math.max(...Object.values(objeto));
+    for (const key in objeto) {
+        if (objeto.hasOwnProperty(key)) {
+            const value = objeto[key];
+            if(value === valorMasGrande){
+                return objeto.key;
+            }
+        }
+    }  
+}
 //Pruebas:                 
 let edadesArray2 = [22, 5, 15, 7, 42, 15, 15, 15, 15, 9, 11, 9 , 11 , 11 , 15]
 
