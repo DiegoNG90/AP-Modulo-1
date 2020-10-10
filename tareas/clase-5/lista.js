@@ -29,10 +29,9 @@ function nodeToArray(nodeList){
     });
     return newArray;
 }
-const edadesArr = nodeToArray($nodoLista)
+const edadesArr = nodeToArray($nodoLista);
 
 //4
-
 
 function numerosRepetidosEnArray(array){
     let numerosrepetidos = [];
@@ -44,11 +43,9 @@ function numerosRepetidosEnArray(array){
         }
     }return numerosrepetidos
 }
-console.log(numerosRepetidosEnArray(edadesArr));
+
 let edadRepetida = numerosRepetidosEnArray(edadesArr)[0];
 
-//edadesArr     0  1   2  3   4   5
-//(6)         [22, 5, 15, 7, 42, 15]
 function cantidadDeRepeticionesEnUnaArrayPorElemento (array){
     let objetoNum = {};
     let contador = 1;
@@ -68,25 +65,18 @@ function cantidadDeRepeticionesEnUnaArrayPorElemento (array){
     }return objetoNum;
 }
 
+const objetoEdadesArr = cantidadDeRepeticionesEnUnaArrayPorElemento(edadesArr);
+
 function valorMasGrandeDeLasPropiedadesDeUnObjetoConNumeros (objeto){
     let valorMasGrande = Math.max(...Object.values(objeto));
+    const objetoConElValorMasGrande = {};
     for (const key in objeto) {
-        if (objeto.hasOwnProperty(key)) {
-            const value = objeto[key];
-            if(value === valorMasGrande){
-                return objeto.key;
-            }
+        if (objeto[key] === valorMasGrande) {
+            objetoConElValorMasGrande[key] = valorMasGrande;
         }
-    }  
+    } return objetoConElValorMasGrande; 
 }
-//Pruebas:                 
-let edadesArray2 = [22, 5, 15, 7, 42, 15, 15, 15, 15, 9, 11, 9 , 11 , 11 , 15]
-
-let arr1 = [0,1,1,2,3,4,4,5,5,5,6,7,8,8];
-console.log( cantidadDeRepeticionesEnUnaArrayPorElemento(arr1));
-console.log( cantidadDeRepeticionesEnUnaArrayPorElemento(edadesArr));
-console.log( cantidadDeRepeticionesEnUnaArrayPorElemento(edadesArray2));
-
+const objetoConLaEdadMasGrande = valorMasGrandeDeLasPropiedadesDeUnObjetoConNumeros(objetoEdadesArr);
 
 console.log("Promedio " + promedio.toFixed(2));
 document.querySelector('#promedio').innerText = `El promedio es ${promedio.toFixed(2)}`
@@ -94,8 +84,8 @@ console.log("Numero mas grande " + Math.max(...lista));
 document.querySelector('#grande').innerText = `El numero más grande es ${Math.max(...lista)}`
 console.log("Numero mas pequeño " +Math.min(...lista));
 document.querySelector('#pequeño').innerText = `El numero más pequeño es ${Math.min(...lista)}`
-document.querySelector('#repetido').innerText = `El numero más veces repetido es: ${edadRepetida}`
-console.log(`Numero repetido: ${edadRepetida}`);
+document.querySelector('#repetido').innerText = `El numero más veces repetido es: ${Object.keys(objetoConLaEdadMasGrande)}`
+console.log(`Numero repetido: ${Object.keys(objetoConLaEdadMasGrande)}`);
 
 
 
