@@ -27,7 +27,14 @@ nodoSumar.onclick = function(e){
     cantidadMinutos += minutos;
     cantidadHoras += horas;
     alert(`Video cargado. Duracion: ${horas} horas ${minutos}' ${segundos}"`);
-}   
+
+    validar("#segundos");
+    validar("#minutos");
+    validar("#horas");
+   
+}
+
+
 function tiempoTotalEnSegundos(segundos, minutos, horas){
     return segundos + minutos*60 + horas*60*60
 }
@@ -43,3 +50,22 @@ nodoCalcular.onclick = function(e){
     alert(`${horas} horas, ${minutos} minutos, ${segundos} segundos`);
     document.getElementById('resultado').textContent = (` Duracion total: ${horas} horas, ${minutos} minutos, ${segundos} segundos`);
 } 
+
+
+//Validaciones
+
+function validar (idTiempo){
+    let $idTiempo = document.querySelector(idTiempo);
+    if (Number($idTiempo.value) < 0){
+        $idTiempo.className = "error";
+    }else{
+        $idTiempo.className = "";
+        $idTiempo.value = "";
+    }
+}
+
+//PRUEBAS
+// validar("#segundos");
+// validar("#minutos");
+// validar("#horas");
+
