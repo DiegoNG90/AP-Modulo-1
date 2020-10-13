@@ -14,9 +14,18 @@ $nodoTitulo = document.querySelector('h1');
 
 function validarNombre(nombre){
     if (nombre === "") {
-        return `El ${nombre} debe contener al menos 1 caracter`;        
+        return "El campo nombre debe contener al menos 1 caracter";        
     }else if (nombre.length >= 50) {
-        return `El ${nombre} no debe contener más de 50 caracteres`;
+        return "El campo nombre no debe contener más de 50 caracteres";
+    }else{
+        return ''
+    }
+}
+function validarApellido(apellido){
+    if (apellido === "") {
+        return "El campo apellido debe contener al menos 1 caracter";        
+    }else if (apellido.length >= 50) {
+        return "El campo apellido no debe contener más de 50 caracteres";
     }else{
         return ''
     }
