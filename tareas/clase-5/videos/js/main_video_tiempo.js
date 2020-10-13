@@ -14,14 +14,7 @@ let cantidadMinutos = 0;
 let cantidadHoras = 0;
 nodoSumar.onclick = function(e){
     e.preventDefault()
-    validarFormulario(e);
-    if(validarFormulario(e) === true){
-        
-    }
-    // else{
-
-    // }
-   
+    validarFormulario(e);   
 }
 
 
@@ -32,7 +25,6 @@ let nodoCalcular = document.getElementById('Calcular');
 nodoCalcular.onclick = function(e){
     e.preventDefault();
 
-
     const segundosTotales = tiempoTotalEnSegundos(cantidadSegundos,cantidadMinutos,cantidadHoras);
     let horas = Math.floor(segundosTotales / 3600 );
     let minutos = Math.floor((segundosTotales%3600) / 60);
@@ -41,12 +33,9 @@ nodoCalcular.onclick = function(e){
     document.getElementById('resultado').textContent = (` Duracion total: ${horas} horas, ${minutos} minutos, ${segundos} segundos`);
 } 
 
-
-//Validaciones
 let segundos;
 let minutos;
 let horas;
-
 
 function validarSegundos (segundos){
     if (segundos < 0){
@@ -90,8 +79,6 @@ function validarFormulario(e){
     const esExito = manejarErrores(errores) === 0;
 
     if(esExito){
-        // $form.className = "oculto";
-        // document.querySelector('#exito').className = "";
         let segundos = Number(document.querySelector('#segundos').value);
         let minutos = Number(document.querySelector('#minutos').value);
         let horas = Number(document.querySelector('#horas').value);    
