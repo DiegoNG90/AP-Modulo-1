@@ -8,29 +8,19 @@ console.log("Video JS linkeado");
 // <strong> pre-creado el tiempo total de los videos.
 
 let nodoSumar = document.getElementById('Sumar-tiempo');
+const $form = document.querySelector('#calcular-tiempo');
 let cantidadSegundos = 0;
 let cantidadMinutos = 0;
 let cantidadHoras = 0;
 nodoSumar.onclick = function(e){
     e.preventDefault()
-    let segundos = Number(document.getElementById('segundos').value);
-    let minutos = Number(document.getElementById('minutos').value);
-    let horas = Number(document.getElementById('horas').value);    
-
-    while(segundos < 0 || minutos < 0 || horas < 0){
-        alert("Lo siento, el programa no puede cargar valores negativos. Asegurese de cargar valores positivos");
-        segundos = 0;
-        minutos = 0;
-        horas = 0;
+    validarFormulario(e);
+    if(validarFormulario(e) === true){
+        
     }
-    cantidadSegundos += segundos;
-    cantidadMinutos += minutos;
-    cantidadHoras += horas;
-    alert(`Video cargado. Duracion: ${horas} horas ${minutos}' ${segundos}"`);
+    // else{
 
-    validar("#segundos");
-    validar("#minutos");
-    validar("#horas");
+    // }
    
 }
 
@@ -53,19 +43,95 @@ nodoCalcular.onclick = function(e){
 
 
 //Validaciones
+let segundos;
+let minutos;
+let horas;
 
-function validar (idTiempo){
-    let $idTiempo = document.querySelector(idTiempo);
-    if (Number($idTiempo.value) < 0){
-        $idTiempo.className = "error";
+
+function validarSegundos (segundos){
+    if (segundos < 0){
+        return "El valor del campo segundos no puede ser menor a 0";
     }else{
-        $idTiempo.className = "";
-        $idTiempo.value = "";
+        return '';
+    }
+}
+function validarMinutos (minutos){
+    if (minutos < 0){
+        return "El valor del campo minutos no puede ser menor a 0";
+    }else{
+        return '';
     }
 }
 
-//PRUEBAS
+function validarHoras (horas){
+    if (horas < 0){
+        return "El valor del campo horas no puede ser menor a 0";
+    }else{
+        return '';
+    }
+}
+
+function validarFormulario(e){
+    e.preventDefault()
+    const $form = document.querySelector('#calcular-tiempo');
+    const horas = Number($form.horas.value);
+    const minutos = Number($form.minutos.value);
+    const segundos = Number($form.segundos.value);
+
+    const errorSegundos = validarSegundos(segundos);
+    const errorMinutos = validarMinutos(minutos);
+    const errorHoras = validarHoras(horas);
+
+    const errores = {
+        segundos: errorSegundos,
+        minutos: errorMinutos,
+        horas: errorHoras
+    }
+    const esExito = manejarErrores(errores) === 0;
+
+    if(esExito){
+        // $form.className = "oculto";
+        // document.querySelector('#exito').className = "";
+        let segundos = Number(document.querySelector('#segundos').value);
+        let minutos = Number(document.querySelector('#minutos').value);
+        let horas = Number(document.querySelector('#horas').value);    
+    
+        cantidadSegundos += segundos;
+        cantidadMinutos += minutos;
+        cantidadHoras += horas;
+        alert(`Video cargado. Duracion: ${horas} horas ${minutos}' ${segundos}"`);
+    }
+}
+
+function manejarErrores(errores){
+    const keys = Object.keys(errores);
+    const $errores = document.querySelector('#errores');
+    cantidadErrores = 0;
+
+    keys.forEach(function(key) {
+        const error = errores[key];
+
+        if (error){
+            cantidadErrores++;
+            $form[key].className = "error"
+
+            const $error = document.createElement('li');
+            $error.innerText = error;
+            $errores.appendChild($error);
+        } else{
+            $form[key].className  = "";
+            $errores.innerHTML = "";
+        }  
+    });
+    return cantidadErrores;
+}
+
+// $form.onsubmit = validarFormulario;
+
+// PRUEBAS
 // validar("#segundos");
 // validar("#minutos");
 // validar("#horas");
+
+
 

@@ -8,18 +8,22 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <form>
+    <form id="calcular-tiempo">
         <label for="horas">Horas:</label>
-        <input type="number" min=0 id="horas" />
+        <input name="horas" type="number" min=0 id="horas" />
         <label for="minutos">Minutos</label>
-        <input type="number" min=0 id="minutos"/>
+        <input name="Minutos" type="number" min=0 id="minutos"/>
         <label for="segundos">Segundos</label>
-        <input type="number" min=0 id="segundos"/>
+        <input name="segundos" type="number" min=0 id="segundos"/>
         <button type="button" id="Sumar-tiempo">Sumar</button>
         <button type="reset" id="Calcular">Calcular</button>
         <p id="resultado"></p>
+        <ul id="errores">
+
+        </ul>
     </form>
     
     <script src='js/main_video_tiempo.js'></script>
+    <script src="js/pruebas_video_tiempo.js"></script>
 </body>
 </html>
