@@ -7,7 +7,7 @@ console.log("Video JS linkeado");
 // al apretar el botón "Calcular tiempo total", debe mostrar en un
 // <strong> pre-creado el tiempo total de los videos.
 
-let nodoSumar = document.getElementById('Sumar-tiempo');
+let nodoSumar = document.getElementById('sumar-tiempo');
 const $form = document.querySelector('#calcular-tiempo');
 let cantidadSegundos = 0;
 let cantidadMinutos = 0;
@@ -21,7 +21,7 @@ nodoSumar.onclick = function(e){
 function tiempoTotalEnSegundos(segundos, minutos, horas){
     return segundos + minutos*60 + horas*60*60
 }
-let nodoCalcular = document.getElementById('Calcular');
+let nodoCalcular = document.getElementById('calcular');
 nodoCalcular.onclick = function(e){
     e.preventDefault();
 
@@ -40,14 +40,20 @@ let horas;
 function validarSegundos (segundos){
     if (segundos < 0){
         return "El valor del campo segundos no puede ser menor a 0";
-    }else{
+    }else if (!(/^[0-9]{1,2}$/.test(segundos.toString()))) {
+        return "El valor del campo segundos no admite numeros decimales ni numeros superiores a 99"
+    }
+    else{
         return '';
     }
 }
 function validarMinutos (minutos){
     if (minutos < 0){
         return "El valor del campo minutos no puede ser menor a 0";
-    }else{
+    }else if (!(/^[0-9]{1,2}$/.test(minutos.toString()))) {
+        return "El valor del campo minutos no admite numeros decimales ni numeros superiores a 99"
+    }
+    else{
         return '';
     }
 }
@@ -55,7 +61,10 @@ function validarMinutos (minutos){
 function validarHoras (horas){
     if (horas < 0){
         return "El valor del campo horas no puede ser menor a 0";
-    }else{
+    }else if (!(/^[0-9]{1,2}$/.test(horas.toString()))) {
+        return "El valor del campo horas no admite numeros decimales ni numeros superiores a 99"
+    }
+    else{
         return '';
     }
 }
