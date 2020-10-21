@@ -8,6 +8,10 @@ function probarValidarNombre(){
         validarNombre('holaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholaholahola') === "El nombre no debe contener más de 50 caracteres", 
         'validarNombre() no validó que el nombre fuera menor a 50 caracteres',
     );
+    console.assert(
+        validarNombre('123Diego') === "El nombre debe contener sólo letras", 
+        'validarNombre() no validó que el nombre contenga sólo letras',
+    );
 }
 
 function probarValidarEdad(){
