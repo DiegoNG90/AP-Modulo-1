@@ -10,6 +10,8 @@ function validarNombre(nombre){
         return "El nombre debe contener al menos 1 caracter"        
     }else if (nombre.length >= 50) {
         return "El nombre no debe contener más de 50 caracteres"
+    }else if (!/^[A-z]+$/.test(nombre)) {
+        return "El nombre debe contener sólo letras"
     }else{
         return ''
     }
@@ -36,33 +38,28 @@ $nodoBoton.onclick = function (e){
         $nodoResultado.innerText = validarNombre(nombre) +". "+ validarEdad(edad);
         $nodoNombre.className = "error";
         $nodoEdad.className = "error";
-        $nodoResultado.style.color = "red";
-        $nodoResultado.style.fontSize = "2rem";
+        $nodoResultado.className = "denegado";
     }else if (validarNombre(nombre) !== '') {
         $nodoNombre.className = "error";
         $nodoEdad.className = "";
         $nodoResultado.innerText = validarNombre(nombre);
-        $nodoResultado.style.color = "red";
-        $nodoResultado.style.fontSize = "2rem";
+        $nodoResultado.className = "denegado";
     }else if (validarEdad(edad) !== '') {
         $nodoEdad.className = "error";
         $nodoNombre.className = "";
         $nodoResultado.innerText = validarEdad(edad);
-        $nodoResultado.style.color = "red";
-        $nodoResultado.style.fontSize = "2rem";
+        $nodoResultado.className = "denegado";
     } else {
         if ((validarNombre(nombre) === '') && (validarEdad(edad) === '')) {
             $nodoNombre.className = "";
             $nodoEdad.className = "";
             $nodoResultado.innerText = `Tienes ${edad}, eres mayor de edad. Bienvenido/a al bar, ${nombre}!`;
-            $nodoResultado.style.color = "green";
-            $nodoResultado.style.fontSize = "2rem";
+            $nodoResultado.className = "aceptado";
         }else if((validarNombre(nombre) === '') && (validarEdad(edad) !== '')){
             $nodoNombre.className = "";
             $nodoEdad.className = "";
             $nodoResultado.innerText = `Tenes ${edad}, sos menor de edad. No podés entrar.`;
-            $nodoResultado.style.color = "red";
-            $nodoResultado.style.fontSize = "2rem"; 
+            $nodoResultado.className = "denegado"; 
         }
     }
 }
